@@ -1,0 +1,8 @@
+{
+	"devDependencies": {
+		"@types/node": "^17.0.33"
+	},
+	"dependencies": {
+		"markdownlint": "^0.25.1"
+	}
+}

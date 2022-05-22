@@ -1,0 +1,19 @@
+{
+    "identifier": "belcar.markdownlint",
+    "name": "markdownlint",
+    "organization": "belcar-s",
+    "description": "Lorem ipsum, dolor sit amet.",
+    "version": "1.0",
+    "categories": ["issues"],
+
+    "main": "main.js",
+
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+
+    "entitlements": {
+        "process": true,
+        "filesystem": "readwrite"
+    }
+}
