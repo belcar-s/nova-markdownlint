@@ -31,7 +31,7 @@ warnings in Nova's **Issues** sidebar and the editor gutter:
 
 markdownlint requires some additional tools to be installed on your Mac:
 
-- [Node.js 8.2.0](https://nodejs.org) and NPM 5.2.0 or newer
+- [Node.js](https://nodejs.org) and NPM
 
 <!--
 ✨ Providing tips, tricks, or other guides for installing or configuring external dependencies can go a long way toward helping your users have a good setup experience:
@@ -47,11 +47,7 @@ markdownlint requires some additional tools to be installed on your Mac:
 🎈 If your extension offers global- or workspace-scoped preferences, consider pointing users toward those settings. For example:
 -->
 
-To configure global preferences, open **Extensions → Extension Library...** then
-select markdownlint's **Preferences** tab.
-
-You can also configure preferences on a per-project basis in **Project → Project
-Settings...**
+This extension offers no configuration options.
 
 <!--
 👋 That's it! Happy developing!
