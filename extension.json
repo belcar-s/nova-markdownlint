@@ -1,8 +1,10 @@
 {
     "identifier": "belcar.markdownlint",
     "name": "markdownlint",
+    "bugs": "https://github.com/belcar-s/nova-markdownlint/issues",
+    "repository": "https://github.com/belcar-s/nova-markdownlint",
     "organization": "belcar-s",
-    "description": "Lorem ipsum, dolor sit amet.",
+    "description": "Lint markdown files with markdownlint.",
     "version": "1.0",
     "categories": ["issues"],
 
