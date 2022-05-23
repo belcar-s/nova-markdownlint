@@ -14,14 +14,14 @@ Let's get started!
 
 # markdownlint for Nova
 
-**markdownlint** automatically lints all open files, then reports errors and
-warnings in Nova's **Issues** sidebar and the editor gutter:
+**markdownlint** automatically lints all open files, then reports warnings in
+Nova's **Issues** sidebar and the editor gutter:
 
 <!--
 🎈 It can also be helpful to include a screenshot or GIF showing your extension in action:
 -->
 
-![screenshot of the Nova editor](https://nova.app/images/en/dark/editor.png)
+![screenshot showing text editor lines being highlighted in yellow as an indicator of automatically-identified issues](https://raw.githubusercontent.com/belcar-s/nova-markdownlint/trunk/Markdownlint%20Screen%20Shot%202022-05-22%20at%2021.29.03.png)
 
 ## Requirements
 
