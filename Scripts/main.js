@@ -1,7 +1,61 @@
+// I used the term 'Language Server' here accidentally. It's not
+// a Language Server. Oops.
+
 const { downloadLanguageServer } = require("./download.js");
 const { sendMessage } = require("./messages.js");
 
-exports.activate = function() {
+exports.activate = async function() {
+	try {
+		const markdownlintPath = nova.path.normalize(nova.path.join(
+			__dirname,
+			"..",
+			"Markdownlint",
+			"node_modules",
+			"markdownlint"
+		));
+		nova.fs.listdir(markdownlintPath);
+	} catch {
+		let informationalNotificationRequest = new NotificationRequest()
+		informationalNotificationRequest.title = "markdownlint Needs To Be Downloaded"
+		informationalNotificationRequest.body = "Files while be linted in a moment."
+		nova.notifications.add(informationalNotificationRequest)
+
+		async function ensureLanguageServer () {
+			try {
+				await downloadLanguageServer();
+			} catch (e) {
+				let failureNotificationRequest = new NotificationRequest()
+				failureNotificationRequest.title = "Download Failed"
+				failureNotificationRequest.body =
+					`Exit code: ${e}.${e == 127 ? " NPM might not be installed." : ""}`
+				failureNotificationRequest.actions = [
+					"Retry",
+					"OK"
+				]
+
+				const { actionIdx: response } =
+					await nova.notifications.add(failureNotificationRequest)
+
+				if (response == 0) {
+					return ensureLanguageServer()
+				}
+
+				throw new Error("Can't ensure the 'Language Server'!!!!")
+			}
+		}
+		try {
+			await ensureLanguageServer()
+		} catch {
+			// couldn't ensure the 'Language Server' which is not a Language Server :))
+			return
+		}
+
+		let completionNotificationRequest = new NotificationRequest()
+		completionNotificationRequest.title = "markdownlint Was Downloaded"
+		completionNotificationRequest.body = "Markdown files will now be linted."
+		nova.notifications.add(completionNotificationRequest)
+	}
+
 	nova.assistants.registerIssueAssistant("markdown", new IssuesProvider());
 }
 
@@ -12,20 +66,6 @@ exports.deactivate = function() {
 
 class IssuesProvider {
 	constructor() {
-		try {
-			const markdownlintPath = nova.path.normalize(nova.path.join(
-				__dirname,
-				"..",
-				"Markdownlint",
-				"node_modules",
-				"markdownlint"
-			));
-			nova.fs.listdir(markdownlintPath);
-		} catch {
-			console.log("Downloading…")
-			downloadLanguageServer();
-		}
-
 		const serverPath = nova.path.normalize(
 			nova.path.join(
 				__dirname,
